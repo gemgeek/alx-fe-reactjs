@@ -21,9 +21,9 @@ function App() {
 
       {/* 👇 UserProfile component with props */}
       <UserProfile
-        name="Matilda Esenam Gbeve"
+        name="Alice"
         age="25"
-        bio="Tech enthusiast, designer, and lifelong learner"
+        bio="Loves hiking and photography"
       />
 
       <div>
