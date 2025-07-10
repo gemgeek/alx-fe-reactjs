@@ -1,17 +1,26 @@
-import WelcomeMessage from './components/WelcomeMessage';
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+
+// Custom Components
+import WelcomeMessage from './components/WelcomeMessage';
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      {/* 👇 Your new JSX component appears at the top */}
+      {/* Custom React Components */}
+      <Header />
+      <MainContent />
+      <Footer />
       <WelcomeMessage />
 
+      {/* Vite + React Starter UI */}
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
