@@ -27,7 +27,4 @@ Welcome to my React learning repository for ALX! This project contains beginner-
 
 ## Screenshots 🖼️
 
-<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%201.png" alt="React1" width="400">
-<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%20%204.png" alt="React2" width="400">
-<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%202.png" alt="React3" width="400">
-<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%203.png" alt="React3" width="400">
+<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%20task.png" alt="React Task" width="400">  <img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%201.png" alt="React1" width="400"> <img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%20%204.png" alt="React2" width="400"> <img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%202.png" alt="React3" width="400"> <img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/React%203.png" alt="React3" width="400">
