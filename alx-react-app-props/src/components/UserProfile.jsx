@@ -1,13 +1,15 @@
-import './UserProfile.css';
+import { useContext } from 'react';
+import UserContext from '../UserContext'; // NOTE: '..' to go up one level
 
-const UserProfile = (props) => {
+function UserProfile() {
+  const userData = useContext(UserContext);
+
   return (
-    <div className="profile-card">
-      <h2>{props.name}</h2>
-      <p><strong>Age:</strong> {props.age}</p>
-      <p><strong>Bio:</strong> {props.bio}</p>
+    <div>
+      <p>Name: {userData.name}</p>
+      <p>Email: {userData.email}</p>
     </div>
   );
-};
+}
 
 export default UserProfile;
