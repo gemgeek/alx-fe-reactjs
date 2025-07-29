@@ -12,17 +12,16 @@ const Search = () => {
 
 
 
-  const handleSearch = async (e) => {
+const handleSearch = async (e) => {
   e.preventDefault();
   setLoading(true);
   setError(false);
-  setResults([]);
-
   try {
-    const data = await searchUsers({ username, location, minRepos });
-    setResults(data);
+    const data = await fetchUserData({ username, location, minRepos });
+    setResults(Array.isArray(data) ? data : [data]);
   } catch (err) {
     setError(true);
+    setResults([]);
   } finally {
     setLoading(false);
   }
