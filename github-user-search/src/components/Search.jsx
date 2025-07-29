@@ -7,21 +7,21 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(false);
-    setUser(null);
+  const handleSearch = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError(false);
+  setUser(null);
 
-    try {
-      const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const data = await fetchUserData(username);
+    setUser(data);
+  } catch (err) {
+    setError(true);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -39,7 +39,7 @@ const Search = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we can't find the user</p>}
+      {error && <p>Looks like we cant find the user</p>}
       {user && (
         <div style={{ marginTop: '20px' }}>
           <img src={user.avatar_url} alt={user.login} width={100} />
