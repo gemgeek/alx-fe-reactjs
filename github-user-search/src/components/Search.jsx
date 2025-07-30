@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchUserData } from '../services/githubService';
+import "../App.css";
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -10,73 +11,98 @@ const Search = () => {
   const [minRepos, setMinRepos] = useState('');
   const [results, setResults] = useState([]);
 
-
-
-const handleSearch = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  setError(false);
-  try {
-    const data = await fetchUserData({ username, location, minRepos });
-    setResults(Array.isArray(data) ? data : [data]);
-  } catch (err) {
-    setError(true);
-    setResults([]);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+    try {
+      const data = await fetchUserData({ username, location, minRepos });
+      setResults(Array.isArray(data) ? data : [data]);
+    } catch (err) {
+      setError(true);
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <form onSubmit={handleSearch} className="space-y-4 p-4 bg-white shadow rounded-md max-w-xl mx-auto">
-  <input
-    type="text"
-    placeholder="Username"
-    value={username}
-    onChange={(e) => setUsername(e.target.value)}
-    className="w-full p-2 border border-gray-300 rounded"
-  />
-  <input
-    type="text"
-    placeholder="Location"
-    value={location}
-    onChange={(e) => setLocation(e.target.value)}
-    className="w-full p-2 border border-gray-300 rounded"
-  />
-  <input
-    type="number"
-    placeholder="Minimum Repositories"
-    value={minRepos}
-    onChange={(e) => setMinRepos(e.target.value)}
-    className="w-full p-2 border border-gray-300 rounded"
-  />
-  <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-    Search
-  </button>
-</form>
-
-{loading && <p className="text-center mt-4">Loading...</p>}
-{error && <p className="text-center text-red-600 mt-4">Looks like we cant find the user</p>}
-
-{results.length > 0 && (
-  <div className="grid gap-4 mt-6 max-w-xl mx-auto">
-    {results.map((user) => (
-      <div key={user.id} className="p-4 border rounded shadow flex items-center space-x-4">
-        <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
-        <div>
-          <p className="font-semibold">{user.login}</p>
-          <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-            View Profile
-          </a>
+    <div className="container">
+      <h1>Search for a GitHub User</h1>
+      <form onSubmit={handleSearch} className="space-y-4 form-wrapper">
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
-      </div>
-    ))}
-  </div>
-)}
+
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+
+        <div className="input-group">
+          <input
+            type="number"
+            placeholder="Minimum Repositories"
+            value={minRepos}
+            onChange={(e) => setMinRepos(e.target.value)}
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-pink-500 text-white px-4 py-3 rounded-lg hover:bg-pink-600 transition duration-200 font-medium"
+        >
+          Search
+        </button>
+      </form>
+
+      {loading && <p className="text-center mt-6 text-pink-600">Loading...</p>}
+      {error && (
+        <p className="text-center mt-4 text-red-600">
+          Looks like we cant find the user.
+        </p>
+      )}
+
+      {results.length > 0 && (
+        <div className="grid gap-6 mt-8 max-w-3xl mx-auto">
+          {results.map((user) => (
+            <div
+              key={user.id}
+              className="flex items-center space-x-6 p-6 border rounded-lg shadow-sm bg-white"
+            >
+              <img
+                src={user.avatar_url}
+                alt={user.login}
+                className="w-20 h-20 rounded-full border border-gray-200"
+              />
+              <div>
+                <p className="text-xl font-semibold text-gray-800">
+                  {user.login}
+                </p>
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-pink-600 hover:underline"
+                >
+                  View Profile
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Search;
