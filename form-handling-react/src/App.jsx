@@ -1,5 +1,5 @@
 import RegistrationForm from "./components/RegistrationForm";
-import FormikForm from "./components/FormikForm";
+import formikForm from "./components/FormikForm";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <h1>User Registration</h1>
       <RegistrationForm />
       <hr />
-      <FormikForm />
+      <formikForm />
     </div>
   );
 }
