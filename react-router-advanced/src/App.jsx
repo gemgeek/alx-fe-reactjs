@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Profile from "./components/Profile";
 import Blog from "./pages/Blog";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BlogPost from "./components/BlogPost";
 
 function App() {
   const isAuthenticated = false; // change to true to access Profile
@@ -21,7 +22,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </Router>
   );
