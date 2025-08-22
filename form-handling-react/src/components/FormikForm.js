@@ -4,7 +4,9 @@ import * as Yup from "yup";
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().min(6, "At least 6 characters").required("Password is required")
+  password: Yup.string()
+    .min(6, "At least 6 characters")
+    .required("Password is required"),
 });
 
 export default function FormikForm() {
@@ -13,7 +15,7 @@ export default function FormikForm() {
       initialValues={{ username: "", email: "", password: "" }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log("User registered (Formik):", values);
+        console.log("Formik submitted:", values);
         alert("Registration successful (Formik mock)!");
       }}
     >
