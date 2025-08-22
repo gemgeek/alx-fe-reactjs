@@ -1,31 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
-function PostsComponent() {
-  // Fetch function
-  const fetchPosts = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    return response.json();
-  };
+const fetchPosts = async () => {
+  const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  return res.data;
+};
 
-  // useQuery hook
-  const { data, isLoading, error, refetch } = useQuery('posts', fetchPosts);
+export default function PostsComponent() {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
 
-  if (isLoading) return <p>Loading posts...</p>;
-  if (error) return <p>Error fetching posts: {error.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
+
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <button onClick={() => refetch()}>Refetch Posts</button>
-      <ul>
-        {data.slice(0, 10).map((post) => (
-          <li key={post.id}>
-            <strong>{post.title}</strong>
-            <p>{post.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {data.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
   );
 }
-
-export default PostsComponent;
