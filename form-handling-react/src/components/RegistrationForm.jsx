@@ -4,13 +4,28 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({}); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username || !email || !password) {
-      alert("All fields are required!");
-      return;
+    let newErrors = {};
+
+    if (!username) {
+      newErrors.username = "Username is required";
     }
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors); 
+
+    if (Object.keys(newErrors).length > 0) {
+      return; 
+    }
+
     console.log("User registered:", { username, email, password });
     alert("Registration successful (mock)!");
   };
@@ -22,9 +37,10 @@ export default function RegistrationForm() {
         <input
           type="text"
           name="username"
-          value={username}   
+          value={username} 
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.username && <div style={{ color: "red" }}>{errors.username}</div>}
       </div>
 
       <div>
@@ -32,9 +48,10 @@ export default function RegistrationForm() {
         <input
           type="email"
           name="email"
-          value={email}   
+          value={email} 
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
       </div>
 
       <div>
@@ -42,9 +59,10 @@ export default function RegistrationForm() {
         <input
           type="password"
           name="password"
-          value={password}   
+          value={password} 
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <div style={{ color: "red" }}>{errors.password}</div>}
       </div>
 
       <button type="submit">Register</button>
